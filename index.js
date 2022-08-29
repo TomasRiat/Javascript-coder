@@ -48,7 +48,7 @@ function cuotasAPagar (cuotas) {
 }
 let valorCuotas = cuotasAPagar(precioTotal)
 
-alert("El valor en " + cantidadCuotas + "cuotas es de: " + valorCuotas)
+alert("Usted va a abonar " + cantidadCuotas + "cuotas de: " + valorCuotas)
 
 
 
