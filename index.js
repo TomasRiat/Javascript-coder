@@ -1,3 +1,4 @@
+
 let totalCompra = 0 
 let componenteSeleccionado = parseInt(prompt("Ingresa el numero del componente a comprar: 1.placa de video 2.procesador 3.memoria ram"))
 
@@ -29,28 +30,34 @@ let precioTotal = cantidadComponente * totalCompra
 
 alert("El valor por  " + cantidadComponente  + " Unidades del producto es: " + precioTotal)
 
-cantidadCuotas= parseInt(prompt("Ingresa la cantidad de cuotas a pagar"))
+cantidadCuotas= parseInt(prompt("Ingresa la cantidad de cuotas a pagar -1, 3, 6, 8 o 12-"))
 
-function cuotasAPagar (cuotas) {
-    let cuotas = 0 
-    if (cuotas === 3){
-        division = 3
-    } else if(cuotas === 6){
-        division = 6
-    } else if(cuotas === 8){
-        division = 8
-    } else if(cuotas === 12){
-        division = 12
+
+
+function cuotasAPagar (cuotas, precio) { 
+
+    if (cuotas === 3) {
+        precio = precio / 3
     }
 
-    let valorCuotas = cuotas / division
-    return valorCuotas
+    else if (cuotas === 6) {
+        precio = precio / 6
+    }
+    else if (cuotas === 8) {
+        precio = precio / 8
+    }
+    else if (cuotas === 12) {
+        precio = precio / 12
+    }
+
+    return precio
+
 }
-let valorCuotas = cuotasAPagar(precioTotal)
 
-alert("Usted va a abonar " + cantidadCuotas + "cuotas de: " + valorCuotas)
+let valorCuotas = cuotasAPagar(cantidadCuotas, precioTotal) 
 
 
+alert("Usted va a abonar " + cantidadCuotas + " Cuotas de: " + valorCuotas)
 
 
 
