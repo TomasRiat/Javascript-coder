@@ -5,13 +5,26 @@ let componenteSeleccionado = parseInt(prompt("Ingresa el numero del componente a
 let seguirComprando = true
 let decision
 
+class Producto{
+    constructor(nombre,precio){
+        this.nombre = nombre
+        this.precio = precio
+    }
+}
+
+const placaDeVideo = new Producto('placa de video',120000)
+const procesador = new Producto('procesador',70000)
+const memoriaRam = new Producto('memoria ram',20000)
+
+
+
 while (seguirComprando === true){
     if (componenteSeleccionado=== 1) {
-        totalCompra = totalCompra + 120000
+        totalCompra = totalCompra + placaDeVideo.precio
     } else if (componenteSeleccionado=== 2) {
-        totalCompra = totalCompra + 70000
+        totalCompra = totalCompra + procesador.precio
     } else if (componenteSeleccionado=== 3) {
-        totalCompra = totalCompra + 20000
+        totalCompra = totalCompra + memoriaRam.precio
     }
 
 alert("El valor del producto es: " + totalCompra)
@@ -63,7 +76,9 @@ alert("Usted va a abonar " + cantidadCuotas + " Cuotas de: " + valorCuotas)
 
 
 
+let animales = [gato,perro,caballo]
 
+animales.splice()
 
 
 
