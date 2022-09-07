@@ -4,27 +4,35 @@ let componenteSeleccionado = parseInt(prompt("Ingresa el numero del componente a
 
 let seguirComprando = true
 let decision
+let productos = []
 
-class Producto{
-    constructor(nombre,precio){
+// declaracion de objetos
+
+class componente{
+    constructor(nombre,precio, id){
         this.nombre = nombre
         this.precio = precio
+        this.id= id
     }
 }
 
-const placaDeVideo = new Producto('placa de video',120000)
-const procesador = new Producto('procesador',70000)
-const memoriaRam = new Producto('memoria ram',20000)
+const placaDeVideo = new componente('placa de video',120000,1)
+productos.push(placaDeVideo)
+const procesador = new componente('procesador',70000,2)
+productos.push(procesador)
+const memoriaRam = new componente('memoria ram',20000,3)
+productos.push(memoriaRam)
 
-
+// seleccion de componentes
 
 while (seguirComprando === true){
-    if (componenteSeleccionado=== 1) {
-        totalCompra = totalCompra + placaDeVideo.precio
-    } else if (componenteSeleccionado=== 2) {
-        totalCompra = totalCompra + procesador.precio
-    } else if (componenteSeleccionado=== 3) {
-        totalCompra = totalCompra + memoriaRam.precio
+    const componenteSolicitado = productos.find(comp=>comp.id===componenteSeleccionado)
+    if(componenteSolicitado){
+        totalCompra = totalCompra + componenteSolicitado.precio
+    }
+    else{
+        componenteSeleccionado = parseInt(prompt('ingrese un producto valido: 1.placa de video 2.procesador 3.memoria ram'))
+        continue
     }
 
 alert("El valor del producto es: " + totalCompra)
@@ -37,22 +45,35 @@ if (decision === 1) {
     }
 }
 
+// cantidad de componentes
+
 cantidadComponente = parseInt(prompt("Ingresa la cantidad del producto seleccionado"))
 
-let precioTotal = cantidadComponente * totalCompra
+
+function multiplicacion (cantidad,compra){
+    return cantidad * compra
+}
+
+function operacionMatematica(cantidad,compra,operacion){
+    return operacion(cantidad,compra)
+}
+
+let precioTotal = operacionMatematica(cantidadComponente,totalCompra,multiplicacion )
+
+
 
 alert("El valor por  " + cantidadComponente  + " Unidades del producto es: " + precioTotal)
+
+
+// seleccion de cuotas a abonar
 
 cantidadCuotas= parseInt(prompt("Ingresa la cantidad de cuotas a pagar -1, 3, 6, 8 o 12-"))
 
 
-
 function cuotasAPagar (cuotas, precio) { 
-
     if (cuotas === 3) {
         precio = precio / 3
     }
-
     else if (cuotas === 6) {
         precio = precio / 6
     }
@@ -62,10 +83,9 @@ function cuotasAPagar (cuotas, precio) {
     else if (cuotas === 12) {
         precio = precio / 12
     }
-
     return precio
-
 }
+
 
 let valorCuotas = cuotasAPagar(cantidadCuotas, precioTotal) 
 
@@ -73,12 +93,7 @@ let valorCuotas = cuotasAPagar(cantidadCuotas, precioTotal)
 alert("Usted va a abonar " + cantidadCuotas + " Cuotas de: " + valorCuotas)
 
 
-
-
-
-let animales = [gato,perro,caballo]
-
-animales.splice()
+console.log(productos)
 
 
 
