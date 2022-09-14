@@ -1,4 +1,6 @@
 
+
+/*
 let totalCompra = 0 
 let componenteSeleccionado = parseInt(prompt("Ingresa el numero del componente a comprar: 1.placa de video 2.procesador 3.memoria ram"))
 
@@ -7,6 +9,12 @@ let decision
 let productos = []
 
 // declaracion de objetos
+*/
+
+let productos = []
+let carrito = []
+
+const selectTag = document.getElementById('lista')
 
 class componente{
     constructor(nombre,precio, id){
@@ -23,8 +31,47 @@ productos.push(procesador)
 const memoriaRam = new componente('memoria ram',20000,3)
 productos.push(memoriaRam)
 
-// seleccion de componentes
 
+productos.forEach((componente) => {
+    const option = document.createElement('option')
+    option.innerText = `${componente.nombre}: $${componente.precio}`
+    option.setAttribute('id', `${componente.id}`)
+    selectTag.append(option)
+})
+
+const boton = document.createElement('button')
+boton.innerText = 'SEGUIR COMPRANDO'
+document.body.append(boton)
+
+const boton2 = document.createElement('button')
+boton2.innerText = 'TERMINAR COMPRA'
+document.body.append(boton2)
+
+boton.onclick = () => {
+const productoSeleccionado = productos[selectTag.selectedIndex]
+carrito.push(productoSeleccionado)
+}
+
+boton2.onclick = () => {
+console.log(carrito)
+let totalCompra = 0
+carrito.forEach((prod) => {
+    totalCompra = totalCompra + prod.precio
+})
+
+
+const p = document.createElement('p')
+p.innerText = `El precio total a pagar es ${totalCompra}`
+document.body.append(p)
+}
+
+
+
+
+
+
+// seleccion de componentes
+/*
 while (seguirComprando === true){
     const componenteSolicitado = productos.find(comp=>comp.id===componenteSeleccionado)
     if(componenteSolicitado){
@@ -98,4 +145,4 @@ console.log(productos)
 
 
 
-
+*/
