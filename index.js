@@ -1,148 +1,79 @@
 
-
-/*
-let totalCompra = 0 
-let componenteSeleccionado = parseInt(prompt("Ingresa el numero del componente a comprar: 1.placa de video 2.procesador 3.memoria ram"))
-
-let seguirComprando = true
-let decision
-let productos = []
-
-// declaracion de objetos
-*/
-
-let productos = []
+let componentes = []
 let carrito = []
 
-const selectTag = document.getElementById('lista')
-
-class componente{
-    constructor(nombre,precio, id){
+class Componente{
+    constructor(id, nombre, precio, img){
+        this.id = id
         this.nombre = nombre
         this.precio = precio
-        this.id= id
+        this.img = img
+    }
+    desplegarComponentes(){
+        const card = `
+            <div class="card">
+                <p>${this.nombre}</p>
+                <div>
+                    <img class='imgProducto' src=${this.img} alt="foto del producto"/>
+                </div>
+                <div>
+                    <p>$${this.precio}</p>
+                </div>
+                <div class="btn-container">
+                    <button id=${this.id} class='btnAgregar'>Agregar al carrito</button>
+                </div>
+            </div>
+        `
+        const container = document.getElementById('container')
+        container.innerHTML += card
+    }
+    agregarEvento(){
+        const btnAgregar = document.getElementById(this.id)
+        const componenteEncontrado = componentes.find(componente => componente.id == this.id)
+        btnAgregar.addEventListener('click', () => agregarAlCarrito(componenteEncontrado))
     }
 }
 
-const placaDeVideo = new componente('placa de video',120000,1)
-productos.push(placaDeVideo)
-const procesador = new componente('procesador',70000,2)
-productos.push(procesador)
-const memoriaRam = new componente('memoria ram',20000,3)
-productos.push(memoriaRam)
+let comp1 = new Componente('001', 'Msi Geforce Gtx 1660 Super Gaming X 6gb Gddr6', 150000, '../assets/img/prod00.jpg')
+let comp2 = new Componente('002', 'Ryzen 7 3800XT 3ra Gen', 80000, '../assets/img/prod01.jpg')
+let comp3 = new Componente('003', 'Corsair DDR4 8GB 3200MHZ Vengeance RGB PRO', 15000, '../assets/img/prod02.jpg')
+let comp4 = new Componente('004', 'Intel Core i9-10900F', 100000, '../assets/img/prod03.jpg')
+let comp5 = new Componente('005', 'Memoria Ram DDR4 8GB 3600MHz HP Series V8 RGB ', 11000, '../assets/img/prod04.jpg')
+let comp6 = new Componente('006', 'RADEON RX 6800 SAPPHIRE NITRO+', 260000, '../assets/img/prod05.jpg')
 
 
-productos.forEach((componente) => {
-    const option = document.createElement('option')
-    option.innerText = `${componente.nombre}: $${componente.precio}`
-    option.setAttribute('id', `${componente.id}`)
-    selectTag.append(option)
+componentes.push(comp1, comp2, comp3, comp4, comp5, comp6)
+
+componentes.forEach(e => {
+    e.desplegarComponentes()
+}) 
+componentes.forEach(e => {
+    e.agregarEvento()
 })
 
-const boton = document.createElement('button')
-boton.innerText = 'SEGUIR COMPRANDO'
-document.body.append(boton)
 
-const boton2 = document.createElement('button')
-boton2.innerText = 'TERMINAR COMPRA'
-document.body.append(boton2)
 
-boton.onclick = () => {
-const productoSeleccionado = productos[selectTag.selectedIndex]
-carrito.push(productoSeleccionado)
+function agregarAlCarrito(componente) {
+
+    let enCarrito = carrito.find(comp => comp.id == componente.id)
+    
+    if(!enCarrito){
+        carrito.push({...componente, cantidad: 1})
+    } else {
+        let carritoFiltrado = carrito.filter(comp => comp.id != componente.id)
+        carrito = [
+            ...carritoFiltrado, 
+            { ...enCarrito, cantidad: enCarrito.cantidad + 1}
+        ]
+    }
+
+    contador.innerHTML =  carrito.reduce((acc, comp) => acc + comp.cantidad, 0)
+    localStorage.setItem('info',JSON.stringify(componente))
 }
-
-boton2.onclick = () => {
-console.log(carrito)
-let totalCompra = 0
-carrito.forEach((prod) => {
-    totalCompra = totalCompra + prod.precio
-})
-
-
-const p = document.createElement('p')
-p.innerText = `El precio total a pagar es ${totalCompra}`
-document.body.append(p)
-}
+const contador = document.getElementById('cartCounter')
+contador.innerHTML = carrito.reduce((acc, comp) => acc + comp.cantidad, 0)
 
 
 
 
 
-
-// seleccion de componentes
-/*
-while (seguirComprando === true){
-    const componenteSolicitado = productos.find(comp=>comp.id===componenteSeleccionado)
-    if(componenteSolicitado){
-        totalCompra = totalCompra + componenteSolicitado.precio
-    }
-    else{
-        componenteSeleccionado = parseInt(prompt('ingrese un producto valido: 1.placa de video 2.procesador 3.memoria ram'))
-        continue
-    }
-
-alert("El valor del producto es: " + totalCompra)
-
-    decision = parseInt(prompt("Queres seguir agregando productos? 1.si 2.no"))
-if (decision === 1) {
-    componenteSeleccionado = parseInt(prompt("Ingresa el nombre del producto a comprar: 1.placa de video 2.procesador 3.memoria ram"))
-    } else if (decision === 2)  {
-        seguirComprando = false
-    }
-}
-
-// cantidad de componentes
-
-cantidadComponente = parseInt(prompt("Ingresa la cantidad del producto seleccionado"))
-
-
-function multiplicacion (cantidad,compra){
-    return cantidad * compra
-}
-
-function operacionMatematica(cantidad,compra,operacion){
-    return operacion(cantidad,compra)
-}
-
-let precioTotal = operacionMatematica(cantidadComponente,totalCompra,multiplicacion )
-
-
-
-alert("El valor por  " + cantidadComponente  + " Unidades del producto es: " + precioTotal)
-
-
-// seleccion de cuotas a abonar
-
-cantidadCuotas= parseInt(prompt("Ingresa la cantidad de cuotas a pagar -1, 3, 6, 8 o 12-"))
-
-
-function cuotasAPagar (cuotas, precio) { 
-    if (cuotas === 3) {
-        precio = precio / 3
-    }
-    else if (cuotas === 6) {
-        precio = precio / 6
-    }
-    else if (cuotas === 8) {
-        precio = precio / 8
-    }
-    else if (cuotas === 12) {
-        precio = precio / 12
-    }
-    return precio
-}
-
-
-let valorCuotas = cuotasAPagar(cantidadCuotas, precioTotal) 
-
-
-alert("Usted va a abonar " + cantidadCuotas + " Cuotas de: " + valorCuotas)
-
-
-console.log(productos)
-
-
-
-
-*/
