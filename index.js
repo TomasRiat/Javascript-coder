@@ -20,7 +20,7 @@ class Componente{
                     <p>$${this.precio}</p>
                 </div>
                 <div class="btn-container">
-                    <button id=${this.id} class='btnAgregar'>Agregar al carrito</button>
+                    <button id=${this.id} class='btnAgregar'>add to cart</button>
                 </div>
             </div>
         `
@@ -31,15 +31,16 @@ class Componente{
         const btnAgregar = document.getElementById(this.id)
         const componenteEncontrado = componentes.find(componente => componente.id == this.id)
         btnAgregar.addEventListener('click', () => agregarAlCarrito(componenteEncontrado))
+        localStorage.setItem('componenteSeleccionado', JSON.stringify(componenteEncontrado))
     }
 }
 
-let comp1 = new Componente('001', 'Msi Geforce Gtx 1660 Super Gaming X 6gb Gddr6', 150000, '../assets/img/prod00.jpg')
-let comp2 = new Componente('002', 'Ryzen 7 3800XT 3ra Gen', 80000, '../assets/img/prod01.jpg')
-let comp3 = new Componente('003', 'Corsair DDR4 8GB 3200MHZ Vengeance RGB PRO', 15000, '../assets/img/prod02.jpg')
-let comp4 = new Componente('004', 'Intel Core i9-10900F', 100000, '../assets/img/prod03.jpg')
-let comp5 = new Componente('005', 'Memoria Ram DDR4 8GB 3600MHz HP Series V8 RGB ', 11000, '../assets/img/prod04.jpg')
-let comp6 = new Componente('006', 'RADEON RX 6800 SAPPHIRE NITRO+', 260000, '../assets/img/prod05.jpg')
+let comp1 = new Componente('001', 'Msi Geforce Gtx 1660 Super Gaming X 6gb Gddr6', 150000, '../assets/img/prod00.png')
+let comp2 = new Componente('002', 'Ryzen 7 3800XT 3ra Gen', 80000, '../assets/img/prod01.png')
+let comp3 = new Componente('003', 'Corsair DDR4 8GB 3200MHZ Vengeance RGB PRO', 15000, '../assets/img/prod02.png')
+let comp4 = new Componente('004', 'Intel Core i9-10900F', 100000, '../assets/img/prod03.png')
+let comp5 = new Componente('005', 'Memoria Ram DDR4 8GB 3600MHz HP Series V8 RGB ', 11000, '../assets/img/prod04.png')
+let comp6 = new Componente('006', 'RADEON RX 6800 SAPPHIRE NITRO+', 260000, '../assets/img/prod05.png')
 
 
 componentes.push(comp1, comp2, comp3, comp4, comp5, comp6)

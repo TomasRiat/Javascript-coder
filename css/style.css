@@ -5,12 +5,12 @@
 }
 
 body{
-    background: #1b1d23;
+    background: #19181b;
     font-family: 'cabin';
 }
 
 nav{
-    background: #000000;
+    background: #333133;
 }
 
 .titulo{
@@ -29,14 +29,23 @@ nav{
 }
 
 .card{
-    max-width: 300px;
+    max-width: 340px;
+    height: 460px;
     position: relative;
-    padding: 15px 10px;
+    padding: 30px;
     margin: 0 auto;
     margin-bottom: 100px;
-    border-radius: 20px;
-    background: #000000;
+    background: #19181b;
+    box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.678);
     justify-content: center;
+}
+
+.card img{
+    transition: 300ms ease;
+}
+
+.card img:hover{
+    transform: scale(1.05);
 }
 
 .imgProducto{
@@ -49,29 +58,30 @@ nav{
 
 p{
     color: #E9EEF2;
-    text-align: start;
+    text-align: center;
     padding: 10px;
 }
 
 .btn-container{
     display: flex;
-    justify-content: start;
+    justify-content: center;
     margin: 5px;
 }
 
 .btnAgregar{
-    height: 30px;
+    height: 50px;
     padding: 0 15px;
-    border-radius: 25px;
+    border-radius: 30px;
     border: 2px solid #000000;
-    background: #E9EEF2;
-    color: #000000;
+    box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.2);
+    color: white;
+    background: #19181b;
     font-family: Lato-Black;
     transition: 300ms ease;
 }
 .btnAgregar:hover{
-    background: #000000;
-    color: #E9EEF2;
+    background:#333133;
+    box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.2);
 }
 .btnAgregar:active{
     background: #000000;
