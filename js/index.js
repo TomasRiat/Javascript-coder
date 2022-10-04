@@ -52,7 +52,7 @@ stockProductos.forEach((producto) => {
                     <p class="precioProducto">Precio:$${producto.precio}</p>
                 </div>
                 <div class="btn-container">
-                    <button id= 'agregar${producto.id}' class="btnAgregar">add to cart</button>
+                    <button id= "agregar${producto.id}" class="btnAgregar">add to cart</button>
                 </div>
             </div>
     `
@@ -116,7 +116,7 @@ const actualizarCarrito = () => {
         div.innerHTML = `
         <p>${prod.nombre}</p>
         <p>Precio:$${prod.precio}</p>
-        <p>Cantidad: <span id='cantidad'>${prod.cantidad}</span></p>
+        <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
         <button onclick="eliminarDelCarrito(${prod.id})" class="boton-eliminar"><i class="bi bi-trash"></i></button>
         `
 
