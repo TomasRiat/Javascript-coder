@@ -1,8 +1,12 @@
-let stockProductos = [
-{id: 1, nombre:"Msi Geforce Gtx 1660 Super Gaming X 6gb Gddr6", precio: 30000, img:'../assets/img/prod00.png'},
-{id: 2, nombre: "Ryzen 7 3800XT 3ra Gen",precio: 80000, img:'../assets/img/prod01.png'},
-{id: 3, nombre: "Corsair DDR4 8GB 3200MHZ Vengeance RGB PRO", precio: 15000, img:'../assets/img/prod02.png'},
-{id: 4, nombre: "Intel Core i9-10900F",precio: 10000, img: '../assets/img/prod03.png'},
-{id: 5, nombre: "Memoria Ram DDR4 8GB 3600MHz HP Series V8 RGB", precio: 11000, img: '../assets/img/prod04.png'},
-{id: 6, nombre: "RADEON RX 6800 SAPPHIRE NITRO+", precio: 26000, img: '../assets/img/prod05.png'}
-]
+
+let stockProductos = []
+
+function cargarJSON(){
+    fetch('../productos.json')
+        .then(response => response.json)
+        .then(data => data.json)
+        return 
+}
+
+cargarJSON()
+console.log(cargarJSON)
